@@ -25,9 +25,9 @@ The web app is fully offline and does not require a server.
 Install Java 17, Android SDK build tools, and Gradle, then run:
 
 ```bash
-keytool -genkeypair -v -keystore taskflowlite-release.jks -storepass taskflowlite -keypass taskflowlite -alias taskflowlite -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Boostly, OU=Release, O=Boostly, L=Lagos, ST=Lagos, C=NG"
+keytool -genkeypair -v -keystore boostly-release.jks -storepass boostlyrelease -keypass boostlyrelease -alias boostly -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Boostly, OU=Release, O=Boostly, L=Lagos, ST=Lagos, C=NG"
 gradle :android:app:assembleRelease --no-daemon
-cp android/app/build/outputs/apk/release/app-release.apk taskflowlite.apk
+cp android/app/build/outputs/apk/release/app-release.apk boostly.apk
 ```
 
 The Android WebView loads:
@@ -43,7 +43,7 @@ JavaScript and localStorage are enabled in `MainActivity`.
 After a release build, the final APK is copied to the project root:
 
 ```text
-taskflowlite.apk
+boostly.apk
 ```
 
-GitHub Actions also uploads `taskflowlite.apk` to the latest GitHub Release.
+GitHub Actions also uploads `boostly.apk` to the latest GitHub Release.

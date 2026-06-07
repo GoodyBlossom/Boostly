@@ -16,10 +16,10 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("${rootProject.projectDir}/taskflowlite-release.jks")
-            storePassword "taskflowlite"
-            keyAlias "taskflowlite"
-            keyPassword "taskflowlite"
+            storeFile file("${rootProject.projectDir}/boostly-release.jks")
+            storePassword "boostlyrelease"
+            keyAlias "boostly"
+            keyPassword "boostlyrelease"
         }
     }
 

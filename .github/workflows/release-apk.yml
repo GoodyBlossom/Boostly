@@ -38,10 +38,10 @@ jobs:
         run: |
           keytool -genkeypair \
             -v \
-            -keystore taskflowlite-release.jks \
-            -storepass taskflowlite \
-            -keypass taskflowlite \
-            -alias taskflowlite \
+            -keystore boostly-release.jks \
+            -storepass boostlyrelease \
+            -keypass boostlyrelease \
+            -alias boostly \
             -keyalg RSA \
             -keysize 2048 \
             -validity 10000 \
@@ -51,23 +51,23 @@ jobs:
         run: gradle :android:app:assembleRelease --no-daemon
 
       - name: Copy APK to project root
-        run: cp android/app/build/outputs/apk/release/app-release.apk taskflowlite.apk
+        run: cp android/app/build/outputs/apk/release/app-release.apk boostly.apk
 
       - name: Test APK metadata
         run: |
-          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging taskflowlite.apk | tee apk-metadata.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging boostly.apk | tee apk-metadata.txt
           grep "package: name='com.bostly.app'" apk-metadata.txt
           grep "application-label:'Boostly'" apk-metadata.txt
 
       - name: Test APK signing
         run: |
-          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs taskflowlite.apk
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs boostly.apk
 
       - name: Create GitHub Release and upload APK
         env:
           GH_TOKEN: "${{ github.token }}"
-          RELEASE_TAG: "taskflowlite-v${{ github.run_number }}"
+          RELEASE_TAG: "boostly-v${{ github.run_number }}"
         run: |
-          gh release create "$RELEASE_TAG" taskflowlite.apk \
+          gh release create "$RELEASE_TAG" boostly.apk \
             --title "Boostly APK $RELEASE_TAG" \
             --notes "Release build of Boostly. The APK is signed, metadata-checked, and packaged as a native Android WebView app."
