@@ -60,12 +60,13 @@ jobs:
           grep "application-label:'Task Flow Lite'" apk-metadata.txt
 
       - name: Test APK signing
-        run: "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs taskflowlite.apk
+        run: |
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs taskflowlite.apk
 
       - name: Create GitHub Release and upload APK
         env:
-          GH_TOKEN: ${{ github.token }}
-          RELEASE_TAG: taskflowlite-v${{ github.run_number }}
+          GH_TOKEN: "${{ github.token }}"
+          RELEASE_TAG: "taskflowlite-v${{ github.run_number }}"
         run: |
           gh release create "$RELEASE_TAG" taskflowlite.apk \
             --title "Task Flow Lite APK $RELEASE_TAG" \
