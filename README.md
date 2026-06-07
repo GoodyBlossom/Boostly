@@ -1,14 +1,14 @@
 # Boostly
 
-Boostly is a compact offline task manager packaged as a native Android WebView APK. It uses HTML, CSS, and JavaScript only. Tasks, priorities, completion state, and theme preference are stored locally with `localStorage`.
+Boostly is an offline-friendly AI growth assistant prototype for small and medium-sized businesses. It is packaged as a compact native Android WebView APK and uses HTML, CSS, and JavaScript only.
 
 ## What The App Does
 
-- Add quick tasks.
-- Sort tasks into Focus, Next, and Later lanes.
-- Mark tasks complete.
-- Filter all, focus, open, and done tasks.
-- Keep data on the device with no backend and no internet requirement.
+- Helps Nigerian SMEs plan social media marketing content.
+- Generates caption ideas, flyer/video direction, platform tips, and posting guidance.
+- Supports local sign up/sign in for demo use.
+- Stores saved generations and brand kit details locally with `localStorage`.
+- Runs without Expo, React Native, or a backend.
 
 ## Run The Web App Locally
 

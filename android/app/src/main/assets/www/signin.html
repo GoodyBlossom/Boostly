@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d1a35" />
+  <title>Sign in — Boostly</title>
+  <link rel="stylesheet" href="css/shared.css" />
+</head>
+<body>
+  <div class="auth-page">
+    <div class="container">
+      <a href="signin.html" class="auth-logo">
+        <div class="auth-logo__mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#080f1f" stroke-width="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <span class="auth-logo__name">Boost<span>ly</span></span>
+      </a>
+
+      <div class="auth-card">
+        <h1>Welcome back</h1>
+        <p class="auth-card__sub">Sign in to continue building your marketing content.</p>
+
+        <div class="auth-error" id="auth-error" role="alert"></div>
+
+        <form id="form-signin" action="index.html" method="get" novalidate>
+          <div class="auth-field">
+            <label for="input-email">Email</label>
+            <input id="input-email" type="email" placeholder="you@business.com" autocomplete="email" required />
+          </div>
+          <div class="auth-field">
+            <label for="input-password">Password</label>
+            <input id="input-password" type="password" placeholder="Your password" autocomplete="current-password" required />
+          </div>
+          <button type="submit" class="auth-btn" id="btn-signin">Sign in</button>
+        </form>
+
+        <p class="auth-footer">New to Boostly? <a href="signup.html">Create an account</a></p>
+      </div>
+    </div>
+  </div>
+  <script src="auth.js"></script>
+</body>
+</html>
