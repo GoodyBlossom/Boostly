@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f9fc">
+  <title>Task Flow Lite</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Today</p>
+        <h1>Task Flow Lite</h1>
+      </div>
+      <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+        <span aria-hidden="true">◐</span>
+      </button>
+    </header>
+
+    <section class="summary" aria-label="Task summary">
+      <div>
+        <strong id="doneCount">0</strong>
+        <span>Done</span>
+      </div>
+      <div>
+        <strong id="openCount">0</strong>
+        <span>Open</span>
+      </div>
+      <div>
+        <strong id="focusCount">0</strong>
+        <span>Focus</span>
+      </div>
+    </section>
+
+    <form class="composer" id="taskForm">
+      <label class="sr-only" for="taskTitle">Task title</label>
+      <input id="taskTitle" name="taskTitle" type="text" placeholder="Add a task" autocomplete="off" maxlength="80" required>
+      <select id="taskPriority" name="taskPriority" aria-label="Priority">
+        <option value="focus">Focus</option>
+        <option value="next">Next</option>
+        <option value="later">Later</option>
+      </select>
+      <button type="submit">Add</button>
+    </form>
+
+    <nav class="tabs" aria-label="Task filters">
+      <button class="tab active" type="button" data-filter="all">All</button>
+      <button class="tab" type="button" data-filter="focus">Focus</button>
+      <button class="tab" type="button" data-filter="open">Open</button>
+      <button class="tab" type="button" data-filter="done">Done</button>
+    </nav>
+
+    <section class="task-list" id="taskList" aria-live="polite"></section>
+
+    <template id="taskTemplate">
+      <article class="task">
+        <button class="check" type="button" aria-label="Toggle task"></button>
+        <div class="task-copy">
+          <h2></h2>
+          <p></p>
+        </div>
+        <button class="delete" type="button" aria-label="Delete task" title="Delete">×</button>
+      </article>
+    </template>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

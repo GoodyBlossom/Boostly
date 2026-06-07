@@ -1,0 +1,72 @@
+name: Build and release APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android packages
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.9"
+
+      - name: Create release signing key
+        run: |
+          keytool -genkeypair \
+            -v \
+            -keystore taskflowlite-release.jks \
+            -storepass taskflowlite \
+            -keypass taskflowlite \
+            -alias taskflowlite \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -dname "CN=Task Flow Lite, OU=Release, O=Task Flow Lite, L=Lagos, ST=Lagos, C=NG"
+
+      - name: Build release APK with Gradle
+        run: gradle :android:app:assembleRelease --no-daemon
+
+      - name: Copy APK to project root
+        run: cp android/app/build/outputs/apk/release/app-release.apk taskflowlite.apk
+
+      - name: Test APK metadata
+        run: |
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging taskflowlite.apk | tee apk-metadata.txt
+          grep "package: name='com.taskflowlite.app'" apk-metadata.txt
+          grep "application-label:'Task Flow Lite'" apk-metadata.txt
+
+      - name: Test APK signing
+        run: "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs taskflowlite.apk
+
+      - name: Create GitHub Release and upload APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: taskflowlite-v${{ github.run_number }}
+        run: |
+          gh release create "$RELEASE_TAG" taskflowlite.apk \
+            --title "Task Flow Lite APK $RELEASE_TAG" \
+            --notes "Release build of Task Flow Lite. The APK is signed, metadata-checked, and packaged as a native Android WebView app."
