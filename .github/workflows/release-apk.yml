@@ -45,7 +45,7 @@ jobs:
             -keyalg RSA \
             -keysize 2048 \
             -validity 10000 \
-            -dname "CN=Task Flow Lite, OU=Release, O=Task Flow Lite, L=Lagos, ST=Lagos, C=NG"
+            -dname "CN=Boostly, OU=Release, O=Boostly, L=Lagos, ST=Lagos, C=NG"
 
       - name: Build release APK with Gradle
         run: gradle :android:app:assembleRelease --no-daemon
@@ -56,8 +56,8 @@ jobs:
       - name: Test APK metadata
         run: |
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging taskflowlite.apk | tee apk-metadata.txt
-          grep "package: name='com.taskflowlite.app'" apk-metadata.txt
-          grep "application-label:'Task Flow Lite'" apk-metadata.txt
+          grep "package: name='com.bostly.app'" apk-metadata.txt
+          grep "application-label:'Boostly'" apk-metadata.txt
 
       - name: Test APK signing
         run: |
@@ -69,5 +69,5 @@ jobs:
           RELEASE_TAG: "taskflowlite-v${{ github.run_number }}"
         run: |
           gh release create "$RELEASE_TAG" taskflowlite.apk \
-            --title "Task Flow Lite APK $RELEASE_TAG" \
-            --notes "Release build of Task Flow Lite. The APK is signed, metadata-checked, and packaged as a native Android WebView app."
+            --title "Boostly APK $RELEASE_TAG" \
+            --notes "Release build of Boostly. The APK is signed, metadata-checked, and packaged as a native Android WebView app."

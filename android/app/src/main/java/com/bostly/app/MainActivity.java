@@ -1,4 +1,4 @@
-package com.taskflowlite.app;
+package com.bostly.app;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

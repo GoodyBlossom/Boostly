@@ -1,6 +1,6 @@
-# Task Flow Lite
+# Boostly
 
-Task Flow Lite is a compact offline task manager packaged as a native Android WebView APK. It uses HTML, CSS, and JavaScript only. Tasks, priorities, completion state, and theme preference are stored locally with `localStorage`.
+Boostly is a compact offline task manager packaged as a native Android WebView APK. It uses HTML, CSS, and JavaScript only. Tasks, priorities, completion state, and theme preference are stored locally with `localStorage`.
 
 ## What The App Does
 
@@ -25,7 +25,7 @@ The web app is fully offline and does not require a server.
 Install Java 17, Android SDK build tools, and Gradle, then run:
 
 ```bash
-keytool -genkeypair -v -keystore taskflowlite-release.jks -storepass taskflowlite -keypass taskflowlite -alias taskflowlite -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Task Flow Lite, OU=Release, O=Task Flow Lite, L=Lagos, ST=Lagos, C=NG"
+keytool -genkeypair -v -keystore taskflowlite-release.jks -storepass taskflowlite -keypass taskflowlite -alias taskflowlite -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Boostly, OU=Release, O=Boostly, L=Lagos, ST=Lagos, C=NG"
 gradle :android:app:assembleRelease --no-daemon
 cp android/app/build/outputs/apk/release/app-release.apk taskflowlite.apk
 ```

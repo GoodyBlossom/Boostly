@@ -1,1 +1,1 @@
--keep class com.taskflowlite.app.MainActivity { *; }
+-keep class com.bostly.app.MainActivity { *; }

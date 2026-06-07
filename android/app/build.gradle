@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace "com.taskflowlite.app"
+    namespace "com.bostly.app"
     compileSdk 35
 
     defaultConfig {
-        applicationId "com.taskflowlite.app"
+        applicationId "com.bostly.app"
         minSdk 23
         targetSdk 35
         versionCode 1
